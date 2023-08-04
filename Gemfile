@@ -5,3 +5,5 @@ source "https://rubygems.org"
 gem 'faker', '~> 3.2'
 
 gem 'ruby2d', '~> 0.12.1'
+
+gem 'minitest', '~> 5.10'
