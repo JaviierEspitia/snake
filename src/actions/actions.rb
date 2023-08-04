@@ -13,6 +13,15 @@ module Actions
 
   end
 
+  def self.change_direction(state, direction)
+    if next_direction_is_valid?(state, direction)
+      state.next_direction = direction
+    else
+      puts "Invalid direction"
+    end
+    return state
+  end
+
   private
 
   def self.calc_next_position(state)
@@ -62,6 +71,20 @@ module Actions
   def self.end_game(state)
     state.game_finished = true
     return state
+  end
+
+  def self.next_direction_is_valid?(state, direction)
+    case state.next_direction
+    when Model::Direction::UP
+      return true if direction != Model::Direction::DOWN
+    when Model::Direction::RIGHT
+      return true if direction != Model::Direction::LEFT
+    when Model::Direction::LEFT
+      return true if direction != Model::Direction::RIGHT
+    when Model::Direction::DOWN
+      return true if direction != Model::Direction::UP
+    end
+    return false
   end
 
   # def calc_next_position(state)
